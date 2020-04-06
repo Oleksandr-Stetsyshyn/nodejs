@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= shopTitle %></title>
+</head>
+
+<body>
+    <h1>Меню піцерії <%= shopTitle %>.</h1>
+
+    <% for (const pizza of pizzas) { %>
+    <h4>Піца: <%= pizza.name%></h4>
+    <p>Ціна: <%= pizza.price %> </p>
+
+    <p>Інгредієнти:</p>
+    <%= pizza.ingredients %>
+
+    <!--хочу списком виводити:
+             <ul>
+            <% for (const ingredient of pizza.ingredients) {%>
+             <li><%= pizza.ingredients.ingredient %></li>
+            <%}%>
+        </ul> -->
+    <%}%>
+    <br><br>
+    <a href="/">Домашня сторінка</a>
+
+</body>
+
+</html>
