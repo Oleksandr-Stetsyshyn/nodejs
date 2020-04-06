@@ -13,19 +13,14 @@
     <% for (const pizza of pizzas) { %>
     <h4>Піца: <%= pizza.name%></h4>
     <p>Ціна: <%= pizza.price %> </p>
-
     <p>Інгредієнти:</p>
-    <%= pizza.ingredients %>
-
-    <!--хочу списком виводити:
-             <ul>
-            <% for (const ingredient of pizza.ingredients) {%>
-             <li><%= pizza.ingredients.ingredient %></li>
-            <%}%>
-        </ul> -->
+    <ul> <%for (let i = 0; i < pizza.ingredients.length; i++) {%>
+        <li> <%= pizza.ingredients[i] %></li>
+        <%}%>
+        </ul>
     <%}%>
-    <br><br>
-    <a href="/">Домашня сторінка</a>
+        <br><br>
+        <a href="/">Домашня сторінка</a>
 
 </body>
 
