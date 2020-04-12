@@ -1,0 +1,63 @@
+<h4>Шукати книгу:</h4>
+<form method="post">
+   <div>
+    <input name="filterBy" type="radio" value="title" checked>Назва
+    <input name="filterBy" type="radio" value="author">Автор
+    <input name="filterBy" type="radio" value="year">Рік<br>
+   </div>
+    <label> Ключове слово: <input type="text" name="keyWord"></label>
+    <br><br>
+    <button type="submit">Фільтрувати</button>
+    <br><br><br>
+</form>
+
+<% let i=0
+for(book of books){ %>
+<h4> <%=book.title%></h4>
+<label>Автор: <%=book.author%></label><br>
+<label>Рік: <%=book.year%></label><br>
+<a href="/books/edit/<%= i++ %>">Редагувати</a>
+<%}%>
+
+<script>
+    // Пример отправки POST запроса:https://developer.mozilla.org/ru/docs/Web/API/Fetch_API/Using_Fetch
+    async function postData(url = '', data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *client
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        });
+        return await response.json(); // parses JSON response into native JavaScript objects
+    }
+
+
+    function onSubmit(event) {
+        event.preventDefault()
+       alert(`${document.forms[0].keyWord.value}, ${document.forms[0].filterBy.value}`)
+
+        postData('/books/filter', {
+            keyWord: document.forms[0].keyWord.value,
+            filterBy: document.forms[0].filterBy.value
+        })
+            .then((data) => {
+                if (data.success)
+                    document.getElementById('msg').innerText = data.msg
+                else
+                    document.getElementById('msg').innerText = data.err.msg
+            });
+    }
+
+    window.onload = function () {
+        document.querySelector('[type="submit"]').onclick = onSubmit
+    }
+
+</script>
