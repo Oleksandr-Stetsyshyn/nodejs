@@ -1,0 +1,15 @@
+{
+    "products": [
+        {
+            "title": "Rice",
+            "num": "25"
+        },
+        
+            {
+                "title": "Tomato",
+                "num": "25"
+            }
+
+        
+    ]
+}

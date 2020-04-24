@@ -1,0 +1,6 @@
+<%for(ingr of ingredients){%>
+    <div><%= ingr.title%></div>
+    <div><%= ingr.price%></div>
+    <a href=<%=`/ingredients/delete/${ingr._id}`%> >Delete</a>
+    <hr/>
+  <%}%>
